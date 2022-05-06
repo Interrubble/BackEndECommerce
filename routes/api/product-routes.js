@@ -114,6 +114,19 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
+  try{
+    const proData = await Product.destroy({
+        where: {id: req.params.id}
+    });
+    if (!proData) {
+      res.status(404).json({message:"This ID is not associated with any products"});
+      return;
+    } else {
+      res.status(200).json(proData);
+    }
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
