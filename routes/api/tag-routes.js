@@ -23,7 +23,12 @@ router.get('/:id', async (req, res) => {
     include:[{model:Product,ProductTag}]
   })
   .then(tagData => {
+    if (!tagData) {
+      res.status(404).json({message:"This ID is not associated with any tags"})
+      return;
+    } else {
       res.json(tagData);
+    }
   })
   .catch(err => {
       console.log(err);
@@ -49,7 +54,12 @@ router.put('/:id', async (req, res) => {
     }
   })
   .then(tagData => {
+    if (!tagData) {
+      res.status(404).json({message:"This ID is not associated with any tags"});
+      return;
+    } else {
       res.json(tagData);
+    }
   })
   .catch(err => {
       console.log(err);
@@ -63,7 +73,12 @@ router.delete('/:id', async (req, res) => {
     const tagData = await Tag.destroy({
         where: {id: req.params.id}
     });
-    res.status(200).json(tagData);
+    if (!tagData) {
+      res.status(404).json({message:"This ID is not associated with any tags"});
+      return;
+    } else {
+      res.status(200).json(tagData);
+    }
     } catch (err) {
         res.status(500).json(err);
     }
