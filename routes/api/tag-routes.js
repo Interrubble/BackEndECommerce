@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
   })
   .then(tagData => {
     if (!tagData) {
-      res.status(404).json({message:"This ID is not associated with any tags"})
+      res.status(404).json({message:"This ID is not associated with any tags"});
       return;
     } else {
       res.json(tagData);

@@ -19,6 +19,21 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
+  const catData = await Category.findByPk(req.params.id,{
+    inlcude:[{model:Product}]
+  })
+  .then(catData=>{
+    if (!catData) {
+      res.status(404).json({message:"This ID is not associated with any categories"});
+      return;
+    } else {
+      res.json(catData);
+    }
+  })
+  .catch(err=>{
+    console.log(err);
+    res.status(500).json({msg: "an error occured", err});
+  });
 });
 
 router.post('/', async (req, res) => {
