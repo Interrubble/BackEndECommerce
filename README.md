@@ -1,5 +1,7 @@
 # Back End E-Commerce Site
 
+Walkthrough Video: https://drive.google.com/file/d/1r4qZp2xeIw2JOHwzoSpmGX5pIeY6GMKM/view?usp=sharing
+
 ## Table of Contents:
 
 1. Description
